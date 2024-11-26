@@ -63,7 +63,7 @@ struct HeaderScrollView: View {
                     self.content
 //                        .background(Color.background(colorScheme: self.colorScheme))
                         .offset(y: -self.headerHeight)
-//                        .padding(.bottom, -self.headerHeight)
+                        .padding(.bottom, -self.headerHeight)
                 }
             }
             .edgesIgnoringSafeArea(.top)
