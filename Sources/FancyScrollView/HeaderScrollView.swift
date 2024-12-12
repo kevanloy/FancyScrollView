@@ -13,6 +13,7 @@ struct HeaderScrollView: View {
     let scrollDownBehavior: ScrollDownHeaderBehavior
     let header: AnyView
     let content: AnyView
+    let navigationLeading: (() -> AnyView)?
 
     var body: some View {
         GeometryReader { globalGeometry in
@@ -40,7 +41,11 @@ struct HeaderScrollView: View {
 
                                 VStack {
                                     geometry.largeTitleWeight == 1 ? HStack {
-                                        BackButton(color: .white)
+                                        if let navigationLeading = navigationLeading {
+                                                                                    navigationLeading()
+                                        } else {
+                                            BackButton(color: .white)
+                                        }
                                         Spacer()
                                     }.frame(width: geometry.width, height: navigationBarHeight) : nil
 

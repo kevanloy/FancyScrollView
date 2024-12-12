@@ -8,16 +8,21 @@ public struct FancyScrollView: View {
     let scrollDownHeaderBehavior: ScrollDownHeaderBehavior
     let header: AnyView?
     let content: AnyView
+    let navigationLeading: (() -> AnyView)?
 
     public var body: some View {
         if let header = header {
             return AnyView(
-                HeaderScrollView(title: title, titleColor: titleColor,
-                                 headerHeight: headerHeight,
-                                 scrollUpBehavior: scrollUpHeaderBehavior,
-                                 scrollDownBehavior: scrollDownHeaderBehavior,
-                                 header: header,
-                                 content: content)
+                HeaderScrollView(
+                    title: title,
+                    titleColor: titleColor,
+                    headerHeight: headerHeight,
+                    scrollUpBehavior: scrollUpHeaderBehavior,
+                    scrollDownBehavior: scrollDownHeaderBehavior,
+                    header: header,
+                    content: content,
+                    navigationLeading: navigationLeading
+                )
             )
         } else {
             return AnyView(
@@ -45,34 +50,42 @@ public struct FancyScrollView: View {
 }
 
 extension FancyScrollView {
-
-    public init<A: View, B: View>(title: String = "", titleColor: Color = Color.white,
-                                  headerHeight: CGFloat = 300,
-                                  scrollUpHeaderBehavior: ScrollUpHeaderBehavior = .parallax,
-                                  scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
-                                  header: () -> A?,
-                                  content: () -> B) {
-
-        self.init(title: title, titleColor: titleColor,
-                  headerHeight: headerHeight,
-                  scrollUpHeaderBehavior: scrollUpHeaderBehavior,
-                  scrollDownHeaderBehavior: scrollDownHeaderBehavior,
-                  header: AnyView(header()),
-                  content: AnyView(content()))
+    public init<A: View, B: View>(
+        title: String = "",
+        titleColor: Color = Color.white,
+        headerHeight: CGFloat = 300,
+        scrollUpHeaderBehavior: ScrollUpHeaderBehavior = .parallax,
+        scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
+        navigationLeading: (() -> AnyView)? = nil,
+        header: () -> A?,
+        content: () -> B
+    ) {
+        self.title = title
+        self.titleColor = titleColor
+        self.headerHeight = headerHeight
+        self.scrollUpHeaderBehavior = scrollUpHeaderBehavior
+        self.scrollDownHeaderBehavior = scrollDownHeaderBehavior
+        self.navigationLeading = navigationLeading
+        self.header = header().map { AnyView($0) }
+        self.content = AnyView(content())
     }
 
-    public init<A: View>(title: String = "", titleColor: Color = Color.white,
-                         headerHeight: CGFloat = 300,
-                         scrollUpHeaderBehavior: ScrollUpHeaderBehavior = .parallax,
-                         scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
-                         content: () -> A) {
-
-           self.init(title: title, titleColor: titleColor,
-                     headerHeight: headerHeight,
-                     scrollUpHeaderBehavior: scrollUpHeaderBehavior,
-                     scrollDownHeaderBehavior: scrollDownHeaderBehavior,
-                     header: nil,
-                     content: AnyView(content()))
-       }
-
+    public init<A: View>(
+        title: String = "",
+        titleColor: Color = Color.white,
+        headerHeight: CGFloat = 300,
+        scrollUpHeaderBehavior: ScrollUpHeaderBehavior = .parallax,
+        scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
+        navigationLeading: (() -> AnyView)? = nil,
+        content: () -> A
+    ) {
+        self.title = title
+        self.titleColor = titleColor
+        self.headerHeight = headerHeight
+        self.scrollUpHeaderBehavior = scrollUpHeaderBehavior
+        self.scrollDownHeaderBehavior = scrollDownHeaderBehavior
+        self.navigationLeading = navigationLeading
+        self.header = nil
+        self.content = AnyView(content())
+    }
 }
