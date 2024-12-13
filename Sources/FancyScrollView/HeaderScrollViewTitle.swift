@@ -5,7 +5,6 @@ struct HeaderScrollViewTitle: View {
     let titleColor: Color
     let height: CGFloat
     let largeTitle: Double
-    let navigationLeading: (() -> AnyView)?
 
     var body: some View {
         let largeTitleOpacity = (max(largeTitle, 0.5) - 0.5) * 2
@@ -26,11 +25,7 @@ struct HeaderScrollViewTitle: View {
 
             ZStack {
                 HStack {
-                    if let navigationLeading = navigationLeading {
-                        navigationLeading()
-                    } else {
-                        BackButton(color: .white)
-                    }
+                    BackButton(color: .primary)
                     Spacer()
                 }
                 HStack {
