@@ -53,7 +53,8 @@ struct HeaderScrollView: View {
 
                                     HeaderScrollViewTitle(title: self.title, titleColor: self.titleColor,
                                                           height: navigationBarHeight,
-                                                          largeTitle: geometry.largeTitleWeight).layoutPriority(1000)
+                                                          largeTitle: geometry.largeTitleWeight,
+                                                          navigationLeading: navigationLeading).layoutPriority(1000)
                                 }
                                 .padding(.top, globalGeometry.safeAreaInsets.top)
                                 .frame(width: geometry.width, height: max(geometry.elementsHeight, navigationBarHeight))
