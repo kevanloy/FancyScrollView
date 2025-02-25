@@ -9,7 +9,7 @@ public struct FancyScrollView: View {
     let header: AnyView?
     let content: AnyView
     let navigationLeading: (() -> AnyView)?
-    let shareURL: String = ""
+    var shareURL: String = ""
 
     public var body: some View {
         if let header = header {
@@ -60,7 +60,8 @@ extension FancyScrollView {
         scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
         navigationLeading: (() -> AnyView)? = nil,
         header: () -> A?,
-        content: () -> B
+        content: () -> B,
+        shareURL: String = ""
     ) {
         self.title = title
         self.titleColor = titleColor
@@ -70,6 +71,7 @@ extension FancyScrollView {
         self.navigationLeading = navigationLeading
         self.header = header().map { AnyView($0) }
         self.content = AnyView(content())
+        self.shareURL = shareURL
     }
 
     public init<A: View>(
