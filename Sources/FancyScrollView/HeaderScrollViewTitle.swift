@@ -40,6 +40,7 @@ struct HeaderScrollViewTitle: View {
                         .font(.system(size: 18))
                         .fontWeight(.bold)
                         .foregroundColor(.primary)
+                    
                     Spacer()
                     if shareURL != "" {
                         if #available(iOS 16.0, *) {
@@ -48,7 +49,7 @@ struct HeaderScrollViewTitle: View {
                                     .foregroundColor(Color("PrimaryBeige"))
                             }
                         } else {
-                            // Fallback on earlier versions
+                            // Fallback on earlier versions dc
                         }
                 }
                 }
