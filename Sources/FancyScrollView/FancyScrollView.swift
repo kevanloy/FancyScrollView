@@ -7,9 +7,9 @@ public struct FancyScrollView: View {
     let scrollUpHeaderBehavior: ScrollUpHeaderBehavior
     let scrollDownHeaderBehavior: ScrollDownHeaderBehavior
     let header: AnyView?
-    var shareURL: String = ""
     let content: AnyView
     let navigationLeading: (() -> AnyView)?
+    let shareURL: String
     
 
     public var body: some View {
@@ -22,9 +22,9 @@ public struct FancyScrollView: View {
                     scrollUpBehavior: scrollUpHeaderBehavior,
                     scrollDownBehavior: scrollDownHeaderBehavior,
                     header: header,
-                    shareURL: shareURL,
                     content: content,
-                    navigationLeading: navigationLeading
+                    navigationLeading: navigationLeading,
+                    shareURL: shareURL
                 )
             )
         } else {
@@ -61,8 +61,8 @@ extension FancyScrollView {
         scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
         navigationLeading: (() -> AnyView)? = nil,
         header: () -> A?,
-        shareURL: String = "",
-        content: () -> B
+        content: () -> B,
+        shareURL: String = ""
     ) {
         self.title = title
         self.titleColor = titleColor
@@ -82,8 +82,8 @@ extension FancyScrollView {
         scrollUpHeaderBehavior: ScrollUpHeaderBehavior = .parallax,
         scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
         navigationLeading: (() -> AnyView)? = nil,
-        shareURL: String = "",
-        content: () -> A
+        content: () -> A,
+        shareURL: String = ""
     ) {
         self.title = title
         self.titleColor = titleColor
@@ -92,7 +92,7 @@ extension FancyScrollView {
         self.scrollDownHeaderBehavior = scrollDownHeaderBehavior
         self.navigationLeading = navigationLeading
         self.header = nil
-        self.shareURL = shareURL
         self.content = AnyView(content())
+        self.shareURL = shareURL
     }
 }

@@ -14,7 +14,8 @@ struct HeaderScrollView: View {
     let header: AnyView
     let content: AnyView
     let navigationLeading: (() -> AnyView)?
-    var shareURL: String = ""
+    let shareURL: String
+    
 
     var body: some View {
         GeometryReader { globalGeometry in
@@ -55,7 +56,7 @@ struct HeaderScrollView: View {
                                     HeaderScrollViewTitle(title: self.title, titleColor: self.titleColor,
                                                           height: navigationBarHeight,
                                                           largeTitle: geometry.largeTitleWeight,
-                                                          navigationLeading: navigationLeading,shareURL: shareURL).layoutPriority(1000)
+                                                          navigationLeading: navigationLeading, shareURL: shareURL).layoutPriority(1000)
                                 }
                                 .padding(.top, globalGeometry.safeAreaInsets.top)
                                 .frame(width: geometry.width, height: max(geometry.elementsHeight, navigationBarHeight))

@@ -6,7 +6,7 @@ struct HeaderScrollViewTitle: View {
     let height: CGFloat
     let largeTitle: Double
     let navigationLeading: (() -> AnyView)?
-    var shareURL: String = ""
+    let shareURL: String
 
 
     var body: some View {
