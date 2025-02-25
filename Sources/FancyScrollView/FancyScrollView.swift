@@ -22,7 +22,7 @@ public struct FancyScrollView: View {
                     scrollUpBehavior: scrollUpHeaderBehavior,
                     scrollDownBehavior: scrollDownHeaderBehavior,
                     header: header,
-                    shareURL: shareURL
+                    shareURL: shareURL,
                     content: content,
                     navigationLeading: navigationLeading
                 )
