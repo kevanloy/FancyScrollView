@@ -27,10 +27,12 @@ struct HeaderScrollViewTitle: View {
                             Image(systemName: "square.and.arrow.up")
                                 .foregroundColor(Color("PrimaryBeige"))
                         }
+                        .padding(.trailing, 8)
                     } else {
                         // Fallback on earlier versions dc
                         Image(systemName: "square.and.arrow.up")
                             .foregroundColor(Color("PrimaryBeige"))
+                            .padding(.trailing, 8)
                     }
             }
             }
@@ -61,10 +63,12 @@ struct HeaderScrollViewTitle: View {
                                 Image(systemName: "square.and.arrow.up")
                                     .foregroundColor(Color("PrimaryBeige"))
                             }
+                            .padding(.trailing, 8)
                         } else {
                             // Fallback on earlier versions dc
                             Image(systemName: "square.and.arrow.up")
                                 .foregroundColor(Color("PrimaryBeige"))
+                                .padding(.trailing, 8)
                         }
                 }
                 }
