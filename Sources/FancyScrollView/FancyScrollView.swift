@@ -30,7 +30,7 @@ public struct FancyScrollView: View {
                     VStack {
                         title != "" ? HStack {
                             Text(title)
-                                .font(.largeTitle)
+                                .font(.custom("Non Natural Grotesk Inktrap", size: 40))
                                 .foregroundColor(.white)
                                 .fontWeight(.black)
                                 .padding(.horizontal, 16)
