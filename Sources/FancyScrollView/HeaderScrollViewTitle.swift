@@ -6,6 +6,7 @@ struct HeaderScrollViewTitle: View {
     let height: CGFloat
     let largeTitle: Double
     let navigationLeading: (() -> AnyView)?
+    var shareURL: String = ""
 
 
     var body: some View {
@@ -39,6 +40,17 @@ struct HeaderScrollViewTitle: View {
                         .font(.system(size: 18))
                         .fontWeight(.bold)
                         .foregroundColor(.primary)
+                    Spacer()
+                    if shareURL != "" {
+                        if #available(iOS 16.0, *) {
+                            ShareLink(item: URL(string: shareURL)!) {
+                                Image(systemName: "square.and.arrow.up")
+                                    .foregroundColor(Color("PrimaryBeige"))
+                            }
+                        } else {
+                            // Fallback on earlier versions
+                        }
+                }
                 }
             }
             .padding(.bottom, (height - 18) / 2)
