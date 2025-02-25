@@ -43,13 +43,10 @@ struct HeaderScrollViewTitle: View {
                     
                     Spacer()
                     if shareURL != "" {
-                        if #available(iOS 16.0, *) {
-                            ShareLink(item: URL(string: shareURL)!) {
-                                Image(systemName: "square.and.arrow.up")
-                                    .foregroundColor(Color("PrimaryBeige"))
-                            }
-                        } else {
-                            // Fallback on earlier versions dc
+                        
+                        ShareLink(item: URL(string: shareURL)!) {
+                            Image(systemName: "square.and.arrow.up")
+                                .foregroundColor(Color("PrimaryBeige"))
                         }
                 }
                 }
