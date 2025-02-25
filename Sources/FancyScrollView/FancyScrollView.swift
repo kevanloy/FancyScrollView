@@ -7,9 +7,10 @@ public struct FancyScrollView: View {
     let scrollUpHeaderBehavior: ScrollUpHeaderBehavior
     let scrollDownHeaderBehavior: ScrollDownHeaderBehavior
     let header: AnyView?
+    var shareURL: String = ""
     let content: AnyView
     let navigationLeading: (() -> AnyView)?
-    var shareURL: String = ""
+    
 
     public var body: some View {
         if let header = header {
@@ -21,9 +22,9 @@ public struct FancyScrollView: View {
                     scrollUpBehavior: scrollUpHeaderBehavior,
                     scrollDownBehavior: scrollDownHeaderBehavior,
                     header: header,
-                    content: content,
-                    navigationLeading: navigationLeading,
                     shareURL: shareURL
+                    content: content,
+                    navigationLeading: navigationLeading
                 )
             )
         } else {
@@ -60,8 +61,8 @@ extension FancyScrollView {
         scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
         navigationLeading: (() -> AnyView)? = nil,
         header: () -> A?,
-        content: () -> B,
-        shareURL: String = ""
+        shareURL: String = "",
+        content: () -> B
     ) {
         self.title = title
         self.titleColor = titleColor
@@ -70,8 +71,8 @@ extension FancyScrollView {
         self.scrollDownHeaderBehavior = scrollDownHeaderBehavior
         self.navigationLeading = navigationLeading
         self.header = header().map { AnyView($0) }
-        self.content = AnyView(content())
         self.shareURL = shareURL
+        self.content = AnyView(content())
     }
 
     public init<A: View>(
@@ -81,6 +82,7 @@ extension FancyScrollView {
         scrollUpHeaderBehavior: ScrollUpHeaderBehavior = .parallax,
         scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
         navigationLeading: (() -> AnyView)? = nil,
+        shareURL: String = "",
         content: () -> A
     ) {
         self.title = title
@@ -90,6 +92,7 @@ extension FancyScrollView {
         self.scrollDownHeaderBehavior = scrollDownHeaderBehavior
         self.navigationLeading = navigationLeading
         self.header = nil
+        self.shareURL = shareURL
         self.content = AnyView(content())
     }
 }
