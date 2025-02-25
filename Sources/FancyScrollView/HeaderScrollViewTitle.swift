@@ -50,6 +50,8 @@ struct HeaderScrollViewTitle: View {
                             }
                         } else {
                             // Fallback on earlier versions dc
+                            Image(systemName: "square.and.arrow.up")
+                                .foregroundColor(Color("PrimaryBeige"))
                         }
                 }
                 }
