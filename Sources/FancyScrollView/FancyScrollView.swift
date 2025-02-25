@@ -96,3 +96,62 @@ extension FancyScrollView {
         self.content = AnyView(content())
     }
 }
+
+#if DEBUG
+struct FancyScrollView_Previews: PreviewProvider {
+    static var previews: some View {
+        FancyScrollView(
+            title: "Sample Title",
+            titleColor: .white,
+            headerHeight: 300,
+            scrollUpHeaderBehavior: .parallax,
+            scrollDownHeaderBehavior: .sticky,
+            navigationLeading: {
+                AnyView(
+                    Button(action: {}) {
+                        Image(systemName: "arrow.left")
+                            .foregroundColor(.white)
+                            .padding()
+                    }
+                )
+            },
+            header: {
+                LinearGradient(
+                    gradient: Gradient(colors: [.blue, .purple]),
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+            },
+            shareURL: "https://example.com/share",
+            content: {
+                VStack(alignment: .leading, spacing: 20) {
+                    ForEach(0..<10) { i in
+                        HStack {
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.gray.opacity(0.3))
+                                .frame(width: 50, height: 50)
+                            
+                            VStack(alignment: .leading) {
+                                Text("Item \(i + 1)")
+                                    .font(.headline)
+                                Text("Description for item \(i + 1)")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                            }
+                            
+                            Spacer()
+                        }
+                        .padding(.horizontal)
+                        
+                        if i < 9 {
+                            Divider()
+                                .padding(.horizontal)
+                        }
+                    }
+                }
+                .padding(.vertical)
+            }
+        )
+    }
+}
+#endif
