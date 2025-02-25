@@ -61,8 +61,8 @@ extension FancyScrollView {
         scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
         navigationLeading: (() -> AnyView)? = nil,
         header: () -> A?,
-        content: () -> B,
-        shareURL: String = ""
+        shareURL: String = "",
+        content: () -> B
     ) {
         self.title = title
         self.titleColor = titleColor
@@ -82,8 +82,8 @@ extension FancyScrollView {
         scrollUpHeaderBehavior: ScrollUpHeaderBehavior = .parallax,
         scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
         navigationLeading: (() -> AnyView)? = nil,
-        content: () -> A,
-        shareURL: String = ""
+        shareURL: String = "",
+        content: () -> A
     ) {
         self.title = title
         self.titleColor = titleColor
@@ -92,7 +92,7 @@ extension FancyScrollView {
         self.scrollDownHeaderBehavior = scrollDownHeaderBehavior
         self.navigationLeading = navigationLeading
         self.header = nil
-        self.content = AnyView(content())
         self.shareURL = shareURL
+        self.content = AnyView(content())
     }
 }
