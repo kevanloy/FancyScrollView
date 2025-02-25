@@ -9,6 +9,7 @@ public struct FancyScrollView: View {
     let header: AnyView?
     let content: AnyView
     let navigationLeading: (() -> AnyView)?
+    let shareURL: String = ""
 
     public var body: some View {
         if let header = header {
@@ -21,7 +22,8 @@ public struct FancyScrollView: View {
                     scrollDownBehavior: scrollDownHeaderBehavior,
                     header: header,
                     content: content,
-                    navigationLeading: navigationLeading
+                    navigationLeading: navigationLeading,
+                    shareURL: shareURL
                 )
             )
         } else {
